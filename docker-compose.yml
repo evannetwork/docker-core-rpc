@@ -1,25 +1,23 @@
 version: '2'
 services:
   parity:
-    image: parity/parity:v2.1.3
+    image: parity/parity:v2.3.0
     container_name: parity_rpc
     user: root
     entrypoint: /home/parity/bin/parity
     restart: always
-    command: 
-      --config /parity/config/parity.toml
+    command:
       --jsonrpc-interface all
       --nat "extip:[External IP]"
-      --no-dapps
+      --no-ipc
+      --config /home/parity/parity-config/config/parity.toml
       --whisper
       --no-secretstore
       --no-secretstore-http
-      --no-ui
-      --no-ipc      
     volumes:
-      - evan-network-chain:/root/.local/share/io.parity.ethereum/
-      - ./parity-config:/parity/config
-      - ./testcore-config/testcore.json:/parity/config/testcore.json
+      - evan-network-chain:/home/parity/.local/share/io.parity.ethereum/
+      - ./parity-config:/home/parity/parity-config/config
+      - ./core-config/core.json:/home/parity/core-config/core.json
     ports:
       - "30303:30303"
       - "30303:30303/udp"
@@ -27,7 +25,7 @@ services:
       driver: "json-file"
       options:
         max-size: "10m"
-        max-file: "5"        
+        max-file: "5"
 
   nginx:
     image: nginx:1.13.8-alpine
@@ -40,13 +38,13 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx-config/ssl:/ssl 
+      - ./nginx-config/ssl:/ssl
       - ./nginx-config/nginx.template.conf:/etc/nginx/nginx.conf.template
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
-        max-file: "5"        
+        max-file: "5"
 
 volumes:
-  evan-network-chain:      
+  evan-network-chain:
