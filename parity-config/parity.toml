@@ -11,6 +11,3 @@ apis = ["web3", "eth", "net", "parity", "traces", "rpc", "personal", "parity_acc
 interface = "0.0.0.0"
 origins = ["all"]
 hosts = ["all"]
-
-[ui]
-disable = true

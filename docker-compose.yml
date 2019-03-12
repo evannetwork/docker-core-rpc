@@ -1,23 +1,21 @@
 version: '2'
 services:
   parity:
-    image: parity/parity:v2.3.0
+    image: parity/parity:v2.3.5
     container_name: parity_rpc
-    user: root
-    entrypoint: /home/parity/bin/parity
     restart: always
     command:
       --jsonrpc-interface all
       --nat "extip:[External IP]"
       --no-ipc
-      --config /home/parity/parity-config/config/parity.toml
-      --whisper
+      --config /parity/config/parity.toml
+      --min-gas-price 200000000000
       --no-secretstore
       --no-secretstore-http
     volumes:
-      - evan-network-chain:/home/parity/.local/share/io.parity.ethereum/
-      - ./parity-config:/home/parity/parity-config/config
-      - ./core-config/core.json:/home/parity/core-config/core.json
+      - ./chain-data:/home/parity/.local/share/io.parity.ethereum/
+      - ./parity-config:/parity/config
+      - ./testcore-config/testcore.json:/parity/config/testcore.json
     ports:
       - "30303:30303"
       - "30303:30303/udp"
@@ -28,7 +26,7 @@ services:
         max-file: "5"
 
   nginx:
-    image: nginx:1.13.8-alpine
+    image: nginx:1.15.9-alpine
     container_name: nginx_rpc
     restart: always
     command: /bin/sh -c "envsubst '$$SSL_DOMAIN' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
