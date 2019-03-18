@@ -4,6 +4,7 @@ services:
     image: parity/parity:v2.3.5
     container_name: parity_rpc
     restart: always
+    user: root
     command:
       --jsonrpc-interface all
       --nat "extip:[External IP]"
@@ -13,7 +14,7 @@ services:
       --no-secretstore
       --no-secretstore-http
     volumes:
-      - ./chain-data:/home/parity/.local/share/io.parity.ethereum/
+      - evan-network-chain:/root/.local/share/io.parity.ethereum/
       - ./parity-config:/parity/config
       - ./testcore-config/testcore.json:/parity/config/testcore.json
     ports:
