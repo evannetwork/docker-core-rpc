@@ -1,21 +1,21 @@
 # evan.network RPC node
 
-The evan.network rpc node provides access to Blockchain via RPC API calls. These are HTTPS and WebSocket calls made from the DAPPs. The RPC server requires a fixed public IP and is inserted into the DNS LoadBalancing of the evan.network as a node. Connections to the server are stateless and encrypted. The certificate is provided by EVAN. network.  
+The evan.network rpc node provides access to Blockchain via RPC API calls. These are HTTPS and WebSocket calls made from the DAPPs. The RPC server requires a fixed public IP and is inserted into the DNS LoadBalancing of the evan.network as a node. Connections to the server are stateless and encrypted. The certificate is provided by EVAN. network.
 
 ## Requirements
 
 The technical requirements to the installed server are :
-AWS: 
- - T2.xlarge /T2.large Instance 
+AWS:
+ - T2.xlarge /T2.large Instance
  - Min. 300GB EBS storage
 
-Azure: 
- - Standard_D4_v3 / Standard_D2_v3 
- - Min 300GB Premium storage 
+Azure:
+ - Standard_D4_v3 / Standard_D2_v3
+ - Min 300GB Premium storage
 
-OnPremise: 
- - 2 Xeon CPU's 
- - 16GB RAM 
+OnPremise:
+ - 2 Xeon CPU's
+ - 16GB RAM
  - 300GB SSD storage
 
 Open Ports:
@@ -40,7 +40,7 @@ To start your rpc node, you have to simply run "docker-compose up -d" in the dir
 
 ## Logging
 
-To access the log file from the masternode, you can use the command "docker logs -f --tail 1000 RUNNING_CONTAINER_NAME" to get the last 1000 log lines from the container. The RUNNING_CONTAINER_NAME can be replaced with the following names:
+To access the log file from the authoritynode, you can use the command "docker logs -f --tail 1000 RUNNING_CONTAINER_NAME" to get the last 1000 log lines from the container. The RUNNING_CONTAINER_NAME can be replaced with the following names:
 
 - parity_rpc (The blockchain instance)
 - nginx_parity (NGINX reverse proxy)

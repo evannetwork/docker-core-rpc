@@ -1,11 +1,14 @@
 version: '2'
 services:
   parity:
-    image: parity/parity:v2.3.5
+    image: parity/parity:v2.5.1
     container_name: parity_rpc
     restart: always
     user: root
     command:
+      # uncomment the used chain
+      # --chain /parity/config/testcore.json
+      # --chain /parity/config/core.json
       --jsonrpc-interface all
       --nat "extip:[External IP]"
       --no-ipc
@@ -15,8 +18,10 @@ services:
       --no-secretstore-http
     volumes:
       - evan-network-chain:/root/.local/share/io.parity.ethereum/
-      - ./parity-config:/parity/config
-      - ./testcore-config/testcore.json:/parity/config/testcore.json
+      - ./parity-rpc-config:/parity/config
+      # uncomment the used chain
+      # - ./testcore-config/testcore.json:/parity/config/testcore.json
+      # - ./core-config/core.json:/parity/config/core.json
     ports:
       - "30303:30303"
       - "30303:30303/udp"
