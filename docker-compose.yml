@@ -1,7 +1,7 @@
 version: '2'
 services:
   parity:
-    image: parity/parity:v2.5.1
+    image: parity/parity:v2.5.10-stable
     container_name: parity_rpc
     restart: always
     user: root
