@@ -18,6 +18,10 @@ OnPremise:
  - 16GB RAM
  - 300GB SSD storage
 
+DigitalOcean:
+- Standard droplet with
+- 8GB RAM, 4 vCPU, 160gb SSD
+
 Open Ports:
 
 30303 (TCP & UDP) – Blockchain Sync
